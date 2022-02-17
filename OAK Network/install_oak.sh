@@ -25,4 +25,3 @@ docker pull oaknetwork/oak_testnet:latest & docker run -d --name oak -v ~/oak-te
 echo "-----------------------------------------------------------------------------"
 echo "Validator Node $OAK_NODENAME успешно установлена"
 echo "-----------------------------------------------------------------------------"
-asdasdsa
