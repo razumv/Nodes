@@ -12,7 +12,6 @@ echo 'export ARCHWAY_NODENAME='$ARCHWAY_NODENAME >> $HOME/.profile
 echo "-----------------------------------------------------------------------------"
 echo "Устанавливаем софт"
 echo "-----------------------------------------------------------------------------"
-sudo apt update && sudo apt upgrade -y &>/dev/null
 sudo apt install wget jq bc build-essential tmux -y &>/dev/null
 curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_docker.sh | bash &>/dev/null
 curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_ufw.sh | bash &>/dev/null
