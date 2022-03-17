@@ -15,7 +15,6 @@ echo "--------------------------------------------------------------------------
 curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_docker.sh | bash &>/dev/null
 curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_ufw.sh | bash &>/dev/null
 curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_go.sh | bash &>/dev/null
-sudo apt install wget jq bc build-essential tmux -y &>/dev/null
 sudo apt install --fix-broken -y &>/dev/null
 sudo apt install nano mc wget -y &>/dev/null
 source .profile
@@ -23,10 +22,10 @@ source .bashrc
 sleep 1
 echo "Весь необходимый софт установлен"
 echo "-----------------------------------------------------------------------------"
-docker create -it --name archway archwaynetwork/archwayd:augusta
-docker cp archway:/usr/bin/archwayd /usr/bin/archwayd
-docker rm archway -f
-docker rmi archwaynetwork/archwayd:augusta
+docker create -it --name archway archwaynetwork/archwayd:augusta &>/dev/null
+docker cp archway:/usr/bin/archwayd /usr/bin/archwayd &>/dev/null
+docker rm archway -f &>/dev/null
+docker rmi archwaynetwork/archwayd:augusta &>/dev/null
 echo "Репозиторий успешно склонирован, начинаем билд"
 echo "-----------------------------------------------------------------------------"
 archwayd config chain-id augusta-1
