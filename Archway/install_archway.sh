@@ -31,7 +31,7 @@ echo "--------------------------------------------------------------------------
 archwayd config chain-id augusta-1
 archwayd config keyring-backend file
 archwayd init $ARCHWAY_NODENAME --chain-id $ARCHWAY_CHAIN &>/dev/null
-wget -O $HOME/.archway/config/genesis.json "https://github.com/maxzonder/archway/raw/main/genesis.json"
+wget -O $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/kuraassh/Nodes/main/Archway/genesis.json"
 wget -qO $HOME/.archway/config/addrbook.json https://raw.githubusercontent.com/SecorD0/Archway/main/addrbook.json &>/dev/null
 sed -i -e "s%^moniker *=.*%moniker = \"$ARCHWAY_NODENAME\"%; "\
 "s%^seeds *=.*%seeds = \"2f234549828b18cf5e991cc884707eb65e503bb2@34.74.129.75:31076,c8890bcde31c2959a8aeda172189ec717fef0b2b@95.216.197.14:26656\"%; "\
