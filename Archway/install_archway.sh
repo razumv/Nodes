@@ -33,7 +33,7 @@ archwayd config keyring-backend file
 archwayd init $ARCHWAY_NODENAME --chain-id $ARCHWAY_CHAIN &>/dev/null
 wget -qO- https://rpc.augusta-1.archway.tech/genesis | jq ".result.genesis" > $HOME/.archway/config/genesis.json &>/dev/null
 wget -qO $HOME/.archway/config/addrbook.json https://raw.githubusercontent.com/SecorD0/Archway/main/addrbook.json &>/dev/null
-sed -i -e "s%^moniker *=.*%moniker = \"$archway_moniker\"%; "\
+sed -i -e "s%^moniker *=.*%moniker = \"$ARCHWAY_NODENAME\"%; "\
 "s%^seeds *=.*%seeds = \"2f234549828b18cf5e991cc884707eb65e503bb2@34.74.129.75:31076,c8890bcde31c2959a8aeda172189ec717fef0b2b@95.216.197.14:26656\"%; "\
 "s%^persistent_peers *=.*%persistent_peers = \"1f6dd298271684729d0a88402b1265e2ae8b7e7b@162.55.172.244:26656\"%; "\
 "s%^external_address *=.*%external_address = \"`wget -qO- eth0.me`:26656\"%; " $HOME/.archway/config/config.toml
