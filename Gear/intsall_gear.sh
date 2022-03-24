@@ -23,9 +23,9 @@ sleep 1
 echo "Весь необходимый софт установлен"
 echo "-----------------------------------------------------------------------------"
 
-wget https://builds.gear.rs/gear-nightly-linux-x86_64.tar.xz && \ &>/dev/null
-tar xvf gear-nightly-linux-x86_64.tar.xz && \ &>/dev/null
-rm gear-nightly-linux-x86_64.tar.xz && \ &>/dev/null
+wget https://builds.gear.rs/gear-nightly-linux-x86_64.tar.xz &>/dev/null
+tar xvf gear-nightly-linux-x86_64.tar.xz &>/dev/null
+rm gear-nightly-linux-x86_64.tar.xz &>/dev/null
 chmod +x $HOME/gear-node &>/dev/null
 echo "Билд завершен успешно"
 echo "-----------------------------------------------------------------------------"
