@@ -38,16 +38,25 @@ sudo systemctl restart systemd-journald
 sudo tee <<EOF >/dev/null /etc/systemd/system/gear.service
 [Unit]
 Description=Gear Node
-After=network-online.target
+After=network.target
+
 [Service]
-User=$USER
-ExecStart=Start=/root/gear-node --name '$NODENAME_GEAR' --execution wasm --log runtime --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0'
+Type=simple
+User=root
+WorkingDirectory=/root/
+ExecStart=/root/gear-node \
+        --name $NODENAME_GEAR \
+        --execution wasm \
+        --log runtime \
+        --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0'
 Restart=always
 RestartSec=10
 LimitNOFILE=10000
+
 [Install]
 WantedBy=multi-user.target
 EOF
+
 
 echo "Сервисные файлы созданы успешно"
 echo "-----------------------------------------------------------------------------"
