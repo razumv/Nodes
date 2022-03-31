@@ -28,7 +28,7 @@ echo "Репозиторий успешно склонирован, начина
 echo "-----------------------------------------------------------------------------"
 uptickd config chain-id augusta-1
 uptickd init $UPTICK_NODENAME --chain-id $UPTICK_CHAIN &>/dev/null
-wget -O $HOME/.UPTICK/config/genesis.json "https://raw.githubusercontent.com/kuraassh/uptick-testnet/main/uptick_7776-1/genesis.json"
+wget -O $HOME/.uptickd/config/genesis.json "https://raw.githubusercontent.com/kuraassh/uptick-testnet/main/uptick_7776-1/genesis.json"
 sed -i.bak -e "s%^moniker *=.*%moniker = \"$UPTICK_NODENAME\"%; "\
 "s%^seeds *=.*%seeds = \"7aad751eb956d65388f0cc37ab2ea179e2143e41@seed0.testnet.uptick.network:26656,7e6c759bcf03641c65659f1b9b2f05ec9de7391b@seed1.testnet.uptick.network:26656\"%; "\
 "s%^persistent_peers *=.*%persistent_peers = \"f046ee3ead7e709b0fd6d5b30898e96959c1144d@peer0.testnet.uptick.network:26656,02ee3a0f3a2002d11c5eeb7aa813b64c59d6b60e@peer1.testnet.uptick.network:26656\"%; "\
