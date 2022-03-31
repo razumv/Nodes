@@ -28,18 +28,20 @@ echo "Репозиторий успешно склонирован, начина
 echo "-----------------------------------------------------------------------------"
 uptickd config chain-id augusta-1
 uptickd init $UPTICK_NODENAME --chain-id $UPTICK_CHAIN &>/dev/null
-wget -O $HOME/.uptickd/config/genesis.json "https://raw.githubusercontent.com/kuraassh/uptick-testnet/main/uptick_7776-1/genesis.json"
-sed -i.bak -e "s%^moniker *=.*%moniker = \"$UPTICK_NODENAME\"%; "\
-"s%^seeds *=.*%seeds = \"7aad751eb956d65388f0cc37ab2ea179e2143e41@seed0.testnet.uptick.network:26656,7e6c759bcf03641c65659f1b9b2f05ec9de7391b@seed1.testnet.uptick.network:26656\"%; "\
-"s%^persistent_peers *=.*%persistent_peers = \"f046ee3ead7e709b0fd6d5b30898e96959c1144d@peer0.testnet.uptick.network:26656,02ee3a0f3a2002d11c5eeb7aa813b64c59d6b60e@peer1.testnet.uptick.network:26656\"%; "\
-"s%^external_address *=.*%external_address = \"`wget -qO- eth0.me`:26656\"%; "
-$HOME/.uptickd/config/config.toml
-sed -i.bak -e "s/indexer = "kv"/indexer = "null"/g"%; "\
-"s%^pruning = "default"=.*%pruning =\"custom"/g"%; "\
-"s%^pruning-keep-recent = "0"=.*%pruning-keep-recent =\"100"/g"%; "\
-"s%^pruning-keep-every = "0"=.*%pruning-keep-every =\"0"/g"%; "\
-"s%^pruning-interval = "0"=.*%pruning-interval =\"10"/g"%; "
-$HOME/.uptickd/config/app.toml
+wget -O $HOME/.uptickd/config/genesis.json "https://raw.githubusercontent.com/kuraassh/uptick-testnet/main/uptick_7776-1/genesis.json" &>/dev/null
+SEEDS=`curl -sL https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7776-1/seeds.txt | awk '{print $1}' | paste -s -d, -` &>/dev/null
+PEERS=`curl -sL https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7776-1/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
+
+sed -i -e "s%^moniker *=.*%moniker = \"$UPTICK_NODENAME\"%; "\
+"s%^seeds *=.*%seeds = \"$SEEDS\"%; "\
+"s%^persistent_peers *=.*%persistent_peers = \"$PEERS\"%; "\
+"s%^external_address *=.*%external_address = \"`wget -qO- eth0.me`:26656\"%; " $HOME/.uptickd/config/config.toml
+
+sed -i -e "s%^indexer *=.*%indexer = \"null\"%; "\
+"s%^pruning *=.*%pruning = \"custom\"%; "\
+"s%^pruning-keep-recent *=.*%pruning-keep-recent =\"100\"%; "\
+"s%^pruning-keep-every *=.*%pruning-keep-every =\"0\"%; "\
+"s%^pruning-interval *=.*%pruning-interval =\"10\"%; " $HOME/.uptickd/config/app.toml
 echo "Билд закончен, переходим к инициализации ноды"
 echo "-----------------------------------------------------------------------------"
 sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
