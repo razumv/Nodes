@@ -19,7 +19,7 @@ pip3 install fastecdsa &>/dev/null
 sudo apt-get install -y pkg-config &>/dev/null
 curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_ufw.sh | bash &>/dev/null
 curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_rust.sh | bash &>/dev/null
-rustup update stable &>/dev/null
+rustup default nightly &>/dev/null
 source $HOME/.cargo/env &>/dev/null
 sleep 1
 echo "Весь необходимый софт установлен"
