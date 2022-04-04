@@ -4,7 +4,7 @@ echo "--------------------------------------------------------------------------
 curl -s https://raw.githubusercontent.com/razumv/helpers/main/doubletop.sh | bash
 echo "-----------------------------------------------------------------------------"
 if [ ! $ALCHEMY_KEY ]; then
-	read -p "Введите ваш HTTP (ПРИМЕР: https://eth-mainnet.alchemyapi.io/v2/xZXxxxxxxxxxxc2q_bzxxxxxxxxxxWTN): " ALCHEMY_KEY
+	read -p "Введите ваш HTTP (ПРИМЕР: https://eth-goerli.alchemyapi.io/v2/xZXxxxxxxxxxxc2q_bzxxxxxxxxxxWTN): " ALCHEMY_KEY
 fi
 echo 'Ваш ключ: ' $ALCHEMY_KEY
 sleep 1
