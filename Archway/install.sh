@@ -23,6 +23,13 @@ cd archway
 git checkout main
 make install
 
+cd $HOME
+git clone https://github.com/archway-network/testnet-signer
+cd testnet-signer
+make install
+cd $HOME
+source $HOME/.profile
+
 chain_id=torii-1
 archwayd init $ARCHWAY_NODENAME --chain-id $chain_id
 # archwayd keys add $ARCHWAY_NODENAME &>> $HOME/account.txt
