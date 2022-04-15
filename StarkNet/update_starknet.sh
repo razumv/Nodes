@@ -7,7 +7,7 @@ echo "Начинаем обновление репрозитория "
 echo "-----------------------------------------------------------------------------"
 cd ~/pathfinder
 git fetch &>/dev/null
-git checkout v0.1.7-alpha &>/dev/null
+git checkout v0.1.8-alpha &>/dev/null
 echo "Репозиторий успешно обновлен, начинаем билд"
 echo "-----------------------------------------------------------------------------"
 cargo build --release --bin pathfinder &>/dev/null
