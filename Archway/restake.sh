@@ -13,7 +13,7 @@ for (( ;; )); do
         BAL=$(archwayd q  bank balances ${DELEGATOR});
         echo -e "BALANCE: ${GREEN}${BAL}${NC} utorii\n"
         echo -e "Claim rewards\n"
-        echo -e "${PASWD}\n${PASWD}\n" | archwayd tx distribution withdraw-rewards ${VALIDATOR} --chain-id=torii-1 --from=$"{ACC_NAME}" --gas=auto -y --commission --fees=500utorii --yes
+        echo -e "${PASWD}\n${PASWD}\n" | archwayd tx distribution withdraw-rewards ${VALIDATOR} --chain-id=torii-1 --from=${ACC_NAME} --gas=auto -y --commission --fees=500utorii --yes
         for (( timer=10; timer>0; timer-- ))
         do
                 printf "* sleep for ${RED}%02d${NC} sec\r" $timer
@@ -23,7 +23,7 @@ for (( ;; )); do
         BAL=$((BAL-1000));
         echo -e "BALANCE: ${GREEN}${BAL}${NC} utorii\n"
         echo -e "Stake ALL\n"
-        echo -e "${PASWD}\n${PASWD}\n" | archwayd tx staking delegate ${VALIDATOR} ${BAL}utorii  --chain-id=torii-1 --from $"{ACC_NAME}"  --gas auto -y -y --fees=500utorii
+        echo -e "${PASWD}\n${PASWD}\n" | archwayd tx staking delegate ${VALIDATOR} ${BAL}utorii  --chain-id=torii-1 --from ${ACC_NAME}  --gas auto -y -y --fees=500utorii
         for (( timer=${DELAY}; timer>0; timer-- ))
         do
                 printf "* sleep for ${RED}%02d${NC} sec\r" $timer
