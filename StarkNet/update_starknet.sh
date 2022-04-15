@@ -5,6 +5,7 @@ curl -s https://raw.githubusercontent.com/razumv/helpers/main/doubletop.sh | bas
 echo "-----------------------------------------------------------------------------"
 echo "Начинаем обновление репрозитория "
 echo "-----------------------------------------------------------------------------"
+sudo apt-get install libgmp3-dev libmpfr-dev -y &>/dev/null
 cd ~/pathfinder/py
 git fetch &>/dev/null
 git checkout v0.1.8-alpha &>/dev/null
