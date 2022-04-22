@@ -48,7 +48,8 @@ ExecStart=/root/gear-node \
         --name $NODENAME_GEAR \
         --execution wasm \
         --log runtime \
-        --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0'
+        --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0' \
+	--telemetry-url 'wss://telemetry.postcapitalist.io/submit 0'
 Restart=always
 RestartSec=10
 LimitNOFILE=10000
