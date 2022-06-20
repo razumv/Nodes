@@ -54,5 +54,5 @@ sudo systemctl enable sui &>/dev/null
 sudo systemctl daemon-reload
 sudo systemctl restart sui
 
-echo "FullNode SUI успешно установлена"
+echo "Fullnode sui успешно установлена"
 echo "-----------------------------------------------------------------------------"
