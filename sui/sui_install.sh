@@ -27,7 +27,7 @@ wget -O /var/sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main
 sed -i.bak "s/db-path:.*/db-path: \"\/var\/sui\/db\"/ ; s/genesis-file-location:.*/genesis-file-location: \"\/var\/sui\/genesis.blob\"/" /var/sui/fullnode.yaml
 echo "Репозиторий успешно склонирован, начинаем билд"
 echo "-----------------------------------------------------------------------------"
-cargo run --release --bin sui-node -- --config-path fullnode.yaml
+cargo run --release --bin sui-node -- --config-path /var/sui/fullnode.yaml
 mv ~/sui/target/release/sui-node /usr/local/bin/
 echo "Билд закончен, переходим к инициализации ноды"
 echo "-----------------------------------------------------------------------------"
