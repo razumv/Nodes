@@ -20,14 +20,14 @@ git clone https://github.com/MystenLabs/sui.git &>/dev/null
 cd sui
 git remote add upstream https://github.com/MystenLabs/sui
 git fetch upstream &>/dev/null
-git checkout --track upstream/devnet &>/dev/null
+git checkout -B devnet --track upstream/devnet &>/dev/null
 mkdir -p /var/sui/db
 cp crates/sui-config/data/fullnode-template.yaml /var/sui/fullnode.yaml
 wget -O /var/sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob &>/dev/null
 sed -i.bak "s/db-path:.*/db-path: \"\/var\/sui\/db\"/ ; s/genesis-file-location:.*/genesis-file-location: \"\/var\/sui\/genesis.blob\"/" /var/sui/fullnode.yaml
 echo "Репозиторий успешно склонирован, начинаем билд"
 echo "-----------------------------------------------------------------------------"
-cargo run --release -p sui-node 
+cargo build --release -p sui-node 
 mv ~/sui/target/release/sui-node /usr/local/bin/
 echo "Билд закончен, переходим к инициализации ноды"
 echo "-----------------------------------------------------------------------------"
