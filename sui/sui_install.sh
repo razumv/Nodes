@@ -16,6 +16,7 @@ source $HOME/.bashrc
 sleep 1
 echo "Весь необходимый софт установлен"
 echo "-----------------------------------------------------------------------------"
+rm -rf /var/sui/db /var/sui/genesis.blob $HOME/sui
 git clone https://github.com/MystenLabs/sui.git &>/dev/null
 cd sui
 git remote add upstream https://github.com/MystenLabs/sui
@@ -27,8 +28,9 @@ wget -O /var/sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main
 sed -i.bak "s/db-path:.*/db-path: \"\/var\/sui\/db\"/ ; s/genesis-file-location:.*/genesis-file-location: \"\/var\/sui\/genesis.blob\"/" /var/sui/fullnode.yaml
 echo "Репозиторий успешно склонирован, начинаем билд"
 echo "-----------------------------------------------------------------------------"
-cargo build --release -p sui-node 
+cargo build --release -p sui-node
 mv ~/sui/target/release/sui-node /usr/local/bin/
+sed -i.bak 's/127.0.0.1/0.0.0.0/' /var/sui/fullnode.yaml
 echo "Билд закончен, переходим к инициализации ноды"
 echo "-----------------------------------------------------------------------------"
 sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
