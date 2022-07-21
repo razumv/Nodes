@@ -47,7 +47,7 @@ sudo tee <<EOF >/dev/null /etc/systemd/system/sui.service
   After=network-online.target
 [Service]
   User=$USER
-  ExecStart=`which sui-node` --config-path $HOME/.sui/fullnode.yaml
+  ExecStart=/usr/bin/sui-node --config-path /root/.sui/fullnode.yaml
   Restart=on-failure
   RestartSec=3
   LimitNOFILE=65535
