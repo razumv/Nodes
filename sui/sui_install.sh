@@ -17,20 +17,23 @@ sleep 1
 echo "Весь необходимый софт установлен"
 echo "-----------------------------------------------------------------------------"
 rm -rf /var/sui/db /var/sui/genesis.blob $HOME/sui
-git clone https://github.com/MystenLabs/sui.git &>/dev/null
+mkdir -p $HOME/.sui
+git clone https://github.com/kuraassh/sui.git &>/dev/null
 cd sui
 git remote add upstream https://github.com/MystenLabs/sui
 git fetch upstream &>/dev/null
-git checkout -B devnet --track upstream/devnet &>/dev/null
-mkdir -p /var/sui/db
-cp crates/sui-config/data/fullnode-template.yaml /var/sui/fullnode.yaml
-wget -O /var/sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob &>/dev/null
-sed -i.bak "s/db-path:.*/db-path: \"\/var\/sui\/db\"/ ; s/genesis-file-location:.*/genesis-file-location: \"\/var\/sui\/genesis.blob\"/" /var/sui/fullnode.yaml
+git checkout --track upstream/devnet &>/dev/null
 echo "Репозиторий успешно склонирован, начинаем билд"
 echo "-----------------------------------------------------------------------------"
-cargo build --release -p sui-node
-mv ~/sui/target/release/sui-node /usr/local/bin/
-sed -i.bak 's/127.0.0.1/0.0.0.0/' /var/sui/fullnode.yaml
+cargo build --release
+mv $HOME/sui/target/release/{sui,sui-node,sui-faucet} /usr/bin/
+wget -qO $HOME/.sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
+cp $HOME/sui/crates/sui-config/data/fullnode-template.yaml \
+$HOME/.sui/fullnode.yaml
+sed -i -e "s%db-path:.*%db-path: \"$HOME/.sui/db\"%; "\
+"s%metrics-address:.*%metrics-address: \"0.0.0.0:9184\"%; "\
+"s%json-rpc-address:.*%json-rpc-address: \"0.0.0.0:9000\"%; "\
+"s%genesis-file-location:.*%genesis-file-location: \"$HOME/.sui/genesis.blob\"%; " $HOME/.sui/fullnode.yaml
 echo "Билд закончен, переходим к инициализации ноды"
 echo "-----------------------------------------------------------------------------"
 sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
@@ -44,10 +47,10 @@ sudo tee <<EOF >/dev/null /etc/systemd/system/sui.service
   After=network-online.target
 [Service]
   User=$USER
-  ExecStart=/usr/local/bin/sui-node --config-path /var/sui/fullnode.yaml
+  ExecStart=`which sui-node` --config-path $HOME/.sui/fullnode.yaml
   Restart=on-failure
   RestartSec=3
-  LimitNOFILE=4096
+  LimitNOFILE=65535
 [Install]
   WantedBy=multi-user.target
 EOF
