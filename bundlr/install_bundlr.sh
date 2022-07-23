@@ -18,5 +18,17 @@ mkdir $HOME/bundlr
 cd $HOME/bundlr
 git clone --recurse-submodules https://github.com/Bundlr-Network/validator-rust.git
 cd $HOME/bundlr/validator-rust && cargo run --bin wallet-tool create > wallet.json
-echo "Кошелек сгенерирован сделайте бекап кошелька и запросите токены с крана следуя указаниям в гайде"
+echo "-----------------------------------------------------------------------------"
+echo -e "Создаем docker-compose файл"
+echo "-----------------------------------------------------------------------------"
+sudo tee <<EOF >/dev/null $HOME/bundlr/validator-rust/.env
+PORT=2109
+VALIDATOR_KEY=./wallet.json
+BUNDLER_URL=https://testnet1.bundlr.network
+GW_WALLET=./wallet.json
+GW_CONTRACT=RkinCLBlY4L5GZFv8gCFcrygTyd5Xm91CzKlR6qxhKA
+GW_ARWEAVE=https://arweave.testnet1.bundlr.network
+EOF
+cd $HOME/bundlr/validator-rust && docker-compose up -d
+echo -e "Docker контейнер запущен"
 echo "-----------------------------------------------------------------------------"
