@@ -17,7 +17,6 @@ echo "--------------------------------------------------------------------------
 mkdir $HOME/bundlr
 cd $HOME/bundlr
 git clone --recurse-submodules https://github.com/Bundlr-Network/validator-rust.git
-cd $HOME/bundlr/validator-rust && \
-cargo run --bin wallet-tool create > wallet.json
+cd $HOME/bundlr/validator-rust && cargo run --bin wallet-tool create > wallet.json
 echo "Кошелек сгенерирован сделайте бекап кошелька и запросите токены с крана следуя указаниям в гайде"
 echo "-----------------------------------------------------------------------------"
