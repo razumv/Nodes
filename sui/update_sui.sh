@@ -6,15 +6,15 @@ echo "--------------------------------------------------------------------------
 echo "-----------------------------------------------------------------------------"
 echo "Выполняем обновление"
 echo "-----------------------------------------------------------------------------"
-systemctl stop sui
-cd sui
+sudo systemctl stop sui
+cd $HOME/sui
 git fetch upstream
 git checkout -B devnet --track upstream/devnet
 echo "-----------------------------------------------------------------------------"
 echo "Устанавливаем обновление"
 echo "-----------------------------------------------------------------------------"
 cargo build --release -p sui-node
-mv ~/sui/target/release/sui-node /usr/local/bin/
+sudo mv ~/sui/target/release/sui-node /usr/local/bin/
 sudo systemctl restart sui
 echo "-----------------------------------------------------------------------------"
 echo "Обновление завершено"
