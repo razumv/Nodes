@@ -14,6 +14,8 @@ curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_node
 curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_docker.sh | bash &>/dev/null
 echo "Весь необходимый софт установлен"
 echo "-----------------------------------------------------------------------------"
+source $HOME/.profile
+source "$HOME/.cargo/env"
 mkdir $HOME/bundlr
 cd $HOME/bundlr
 git clone --recurse-submodules https://github.com/Bundlr-Network/validator-rust.git
