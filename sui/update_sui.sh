@@ -7,14 +7,16 @@ echo "--------------------------------------------------------------------------
 echo "Выполняем обновление"
 echo "-----------------------------------------------------------------------------"
 sudo systemctl stop sui
+rm -rf $HOME/.sui/db
+wget -qO $HOME/.sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
 cd $HOME/sui
 git fetch upstream
 git checkout -B devnet --track upstream/devnet
 echo "-----------------------------------------------------------------------------"
 echo "Устанавливаем обновление"
 echo "-----------------------------------------------------------------------------"
-cargo build --release -p sui-node
-sudo mv ~/sui/target/release/sui-node /usr/local/bin/
+cargo build --release
+sudo mv $HOME/sui/target/release/{sui,sui-node,sui-faucet} /usr/bin/
 sudo systemctl restart sui
 echo "-----------------------------------------------------------------------------"
 echo "Обновление завершено"
