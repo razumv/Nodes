@@ -11,7 +11,6 @@ rm -rf $HOME/.sui/db
 wget -qO $HOME/.sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
 cd $HOME/sui
 git reset --hard
-git remote add upstream https://github.com/MystenLabs/sui
 git fetch upstream
 git checkout -B devnet --track upstream/devnet
 echo "-----------------------------------------------------------------------------"
