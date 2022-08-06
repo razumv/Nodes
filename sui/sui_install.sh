@@ -18,7 +18,7 @@ echo "Весь необходимый софт установлен"
 echo "-----------------------------------------------------------------------------"
 rm -rf /var/sui/db /var/sui/genesis.blob $HOME/sui $HOME/.sui
 mkdir -p $HOME/.sui
-git -C $HOME clone https://github.com/kuraassh/sui.git &>/dev/null
+git -C $HOME clone git clone https://github.com/MystenLabs/sui.git &>/dev/null
 cd $HOME/sui
 git remote add upstream https://github.com/MystenLabs/sui
 git fetch upstream &>/dev/null
