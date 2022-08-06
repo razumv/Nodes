@@ -18,11 +18,11 @@ echo "Весь необходимый софт установлен"
 echo "-----------------------------------------------------------------------------"
 rm -rf /var/sui/db /var/sui/genesis.blob $HOME/sui $HOME/.sui
 mkdir -p $HOME/.sui
-git clone git clone https://github.com/MystenLabs/sui.git
+git clone https://github.com/MystenLabs/sui.git
 cd $HOME/sui
 git remote add upstream https://github.com/MystenLabs/sui
 git fetch upstream &>/dev/null
-git checkout --track upstream/devnet 
+git checkout --track upstream/devnet
 echo "Репозиторий успешно склонирован, начинаем билд"
 echo "-----------------------------------------------------------------------------"
 cargo build --release
